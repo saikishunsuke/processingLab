@@ -13,23 +13,42 @@ import java.io.OutputStream;
 import java.io.IOException; 
 
 public class test extends PApplet {
-  public void setup() {
 
-colorMode(HSB, 360, 256, 256);
-background(0);
-// smooth();
-translate(100, 400);
+float x = 200;
+float y = 200;
+float nsx = 0.001f;
+float nsy = random(1);
+float angle = 0;
 
-for (int i = 0; i < 36; i++) {
-  scale(1.1f);
-  rotate(PI/18);
-  stroke(10 * i, 255, 255, 102);
-  line(0, 0, 20, 0);
+public void setup(){
+  
+  background(0);
+  // fill(255);
+  // frameRate(30);
+  colorMode(HSB, 360, 255, 255, 100);
+  noStroke();
+  noFill();
 }
-    noLoop();
-  }
 
-  public void settings() { size (500, 500); }
+public void draw(){
+  // fill(y%360, 255, 255, 80);
+  pushMatrix();
+  translate(100+noise(nsx)*200,100+noise(nsy)*200);
+  rotate(radians(frameCount/2%360));
+  stroke(frameCount/3%360, 200, 200, 50);
+  // ellipse(x,y,50,50);
+  rect(0, 0, 100, 100);
+  // x = noise(nsx)*width;
+  // y = noise(nsy)*height;
+  x = cos(angle)*width/3;
+  y = sin(angle)*height/3;
+  // y += 0.1;
+  nsx += 0.002f;
+  nsy += 0.002f;
+  angle += 0.008f;
+  popMatrix();
+}
+  public void settings() {  size(400, 400); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "test" };
     if (passedArgs != null) {

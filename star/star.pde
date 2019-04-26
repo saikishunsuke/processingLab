@@ -11,7 +11,7 @@ int fc = 1;
 void setup(){
   size(600, 600);
   background(0);
-  colorMode(HSB, 2*PI, 255, 255, 100);
+  colorMode(HSB, 360, 255, 255, 100);
   for(int i=0; i<pointNum; i++){
     points[i][0] = round*cos(angle);
     points[i][1] = round*sin(angle);
@@ -20,11 +20,12 @@ void setup(){
 }
 
 void draw(){
+  background(0);
   pushMatrix();
   translate(width/2,height/2);
   noFill();
   for(int i=0; i<pointNum; i++){
-    stroke((frameCount/5)%(2*PI), 100, 255, 80);
+    stroke((frameCount*2)%360, 100, 255, 80);
     point(points[i][0], points[i][1]);
     for(int j=0; j<pointNum-1; j++){
       line(points[i][0], points[i][1], points[(i+j)%pointNum][0], points[(i+j)%pointNum][1]);

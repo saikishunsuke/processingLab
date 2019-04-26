@@ -1,8 +1,11 @@
 int pointNum = 3;
 float step = 2*PI/pointNum;
 int round = 300;
-float angle = 0;
+float angle = -HALF_PI;
 float[][] points = new float[pointNum][2];
+float appearSpeed = 1;
+float appearAngle = 0;
+int fc = 1;
 
 
 void setup(){
@@ -14,16 +17,12 @@ void setup(){
     points[i][1] = round*sin(angle);
     angle += step;
   }
-  frameRate(10);
-  noFill();
 }
 
 void draw(){
   pushMatrix();
-  background(0);
   translate(width/2,height/2);
-  // translate(random(width),random(height));
-  // rotate(random(PI));
+  noFill();
   for(int i=0; i<pointNum; i++){
     stroke((frameCount/5)%(2*PI), 100, 255, 80);
     point(points[i][0], points[i][1]);
@@ -34,13 +33,18 @@ void draw(){
   }
   ellipse(0, 0, round, round);
   ellipse(0, 0, 2*round, 2*round);
+  fill(0, 0, 0, 100);
+  noStroke();
+  arc(0,0,2*round+5,2*round+5,-HALF_PI,20*PI/fc-HALF_PI-1, PIE);
   popMatrix();
+  fc++;
 }
 
 void mousePressed(){
   pointNum += 1;
-  angle = 0;
+  angle = HALF_PI;
   step = 2*PI/pointNum;
+  fc = 1;
   background(0);
   points = new float[pointNum][2];
   for(int i=0; i<pointNum; i++){

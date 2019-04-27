@@ -53,5 +53,4 @@ void mousePressed(){
     points[i][1] = round*sin(angle);
     angle += step;
   }
-  print(pointNum);
 }

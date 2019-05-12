@@ -1,7 +1,7 @@
 // time is frameCount(1)
-float dx = 1;
-float dt = 1;
-float c = 0.8;
+float dx = 2;
+float dt = 2;
+float c = 0.3;
 float[] surface = new float[int(600/dx)];
 float[] pastSurface = new float[int(600/dx)];
 
